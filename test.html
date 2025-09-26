@@ -1,0 +1,42 @@
+MONGO DB  commands 
+
+show dbs
+1.use priyaDb -> command to use or create db
+
+let items is our collection in priyaDb
+
+CREATE 
+db.items.insertOne({first_name: 'priya' ,last_name :'choudhary'});
+db.items.insertMany([
+{first_name: 'priya' ,last_name :'choudhary' , age:25}
+, {first_name: 'payal' ,last_name :'kumari' , age:18},
+{first_name: 'nandini' ,last_name :'sharma' , age:30}
+])
+
+
+READ
+db.items.find()
+db.items.find({first_name:'payal'})
+db.items.find({age:{$gte:15}})
+db.items.find({age:{$gt:18}})
+
+
+AND CONDITION 
+db.items.find({first_name:'payal' , age :{$gt : 10}})
+
+
+OR CONDITION 
+db.items.find({
+    $or:[{last_name:'choudhary'} , {age:{$lt : 20}}]
+})
+
+IF WE HAVE TO GET ONLY SINGLE KEY NOT WHOLE OBJECT FROM DATABASE DOCUMENT THEN 
+
+db.items.find({first_name:'priya'} , {age:1})
+
+DELETE 
+db.items.deleteOne({first_name:'payal'})
+db.items.deleteMany({first_name:'payal'})
+
+UPDATE 
+db.items.updateOne({first_name:'nandini'} ,{$set:{age:45}})
